@@ -34,7 +34,7 @@ var contactsManage = {
        },
       function(result){
         /*alert("Error" + reply);*/
-      },"ContactsManager", "add",[data]);
+      },"manageContacts", "add",[data]);
     }
 };
 
