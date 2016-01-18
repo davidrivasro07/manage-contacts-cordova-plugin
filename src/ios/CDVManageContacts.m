@@ -17,12 +17,12 @@
  under the License.
  */
 
-#import "CDVContactsPhoneNumbers.h"
+#import "CDVManageContacts.h"
 #import <UIKit/UIKit.h>
 #import <Cordova/NSArray+Comparisons.h>
 #import <Cordova/NSDictionary+Extensions.h>
 
-@implementation CDVContactsPhoneNumbers
+@implementation CDVManageContacts
 
 - (void)list:(CDVInvokedUrlCommand*)command
 {

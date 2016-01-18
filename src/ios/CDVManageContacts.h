@@ -23,7 +23,7 @@
 #import <ContactsUI/ContactsUI.h>
 #import <Cordova/CDVPlugin.h>
 
-@interface CDVContactsPhoneNumbers : CDVPlugin
+@interface CDVManageContacts : CDVPlugin
 {
     ABAddressBookRef addressBook;
 }
