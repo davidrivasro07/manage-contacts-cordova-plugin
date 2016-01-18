@@ -1,9 +1,9 @@
 {
-  "name": "callpal-plugin-manage-contacts",
+  "name": "cordova-plugin-contacts-manage",
   "version": "0.0.1",
-  "description": "Cordova Plugin to Manage Contacts.",
+  "description": "Cordova Plugin to Manage contacts ",
   "cordova": {
-    "id": "com.callpalapp.manageContacts",
+    "id": "com.callpal.cordova.manageContacts",
     "platforms": [
       "android",
       "ios"
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davidrivasro07/manage-contacts-cordova-plugin.git"
+    "url": "git+https://github.com/davidrivasro07/manage-contacts-cordova-plugin"
   },
   "keywords": [
     "cordova",
     "contacts",
-    "manage",
+    "add",
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios"
@@ -24,7 +24,7 @@
   "author": "David Rivas",
   "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/davidrivasro07/manage-contacts-cordova-plugin.git/issues"
+    "url": "https://github.com/davidrivasro07/manage-contacts-cordova-plugin/issues"
   },
-  "homepage": "https://github.com/davidrivasro07/manage-contacts-cordova-plugin.git#readme"
+  "homepage": "https://github.com/davidrivasro07/manage-contacts-cordova-plugin#readme"
 }

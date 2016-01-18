@@ -35,6 +35,7 @@
  *  1: successcallback - this is the javascript function that will be called with the array of found contacts
  *  2:  errorCallback - optional javascript function to be called in the event of an error
  */
+- (void)list:(CDVInvokedUrlCommand*)command;
 - (void)add:(CDVInvokedUrlCommand*)command;
 
 @end
