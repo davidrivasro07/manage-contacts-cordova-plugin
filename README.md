@@ -36,7 +36,7 @@ Use the  `navigator.manageContacts` with the method
 
 Use this repository
 ```
-cordova plugin add https://github.com/CallPal/cordova-plugin-contacts-phone-numbers
+ionic plugin add https://github.com/davidrivasro07/manage-contacts-cordova-plugin.git
 ```
 ## Using the plugin ##
 The plugin creates the object `navigator.contactsPhoneNumbers` with the methods
