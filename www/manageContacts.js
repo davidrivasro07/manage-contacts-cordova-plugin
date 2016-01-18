@@ -34,8 +34,8 @@ var contactsList = {
      * @return array of Contacts
      */
     list:function(successCB, errorCB) {
-        argscheck.checkArgs('fF', 'contactsPhoneNumbers.list', arguments);
-        exec(successCB, errorCB, "ContactsPhoneNumbers", "list", []);
+        argscheck.checkArgs('fF', 'manageContacts.list', arguments);
+        exec(successCB, errorCB, "ManageContacts", "list", []);
     },
 
     add:function(data){
@@ -45,7 +45,7 @@ var contactsList = {
        },
       function(result){
         /*alert("Error" + reply);*/
-      },"ContactsPhoneNumbers", "add",[data]);
+      },"ManageContacts", "add",[data]);
     }
 };
 
