@@ -35,37 +35,9 @@ Use the  `navigator.manageContacts` with the method
      name: name,
      phones: [firstNumber, secondNumber]
    };
-   navigator.contactsPhoneNumbers.add(data);
+   navigator.manageContacts.add(data);
 
 ```
-## Using the plugin ##
-The plugin creates the object `navigator.contactsPhoneNumbers` with the methods
-
-  `list(success, fail)`
-
-A full example could be:
-
-```
-   //
-   //
-   // after deviceready
-   //
-   //
-   navigator.contactsPhoneNumbers.list(function(contacts) {
-      console.log(contacts.length + ' contacts found');
-      for(var i = 0; i < contacts.length; i++) {
-         console.log(contacts[i].id + " - " + contacts[i].displayName);
-         for(var j = 0; j < contacts[i].phoneNumbers.length; j++) {
-            var phone = contacts[i].phoneNumbers[j];
-            console.log("===> " + phone.type + "  " + phone.number + " (" + phone.normalizedNumber+ ")");
-         }
-      }
-   }, function(error) {
-      console.error(error);
-   });
-
-```
-
 ## Behaviour
 
 The plugin retrieves **ONLY** the contacts containing one or more phone numbers. It does not allow to modify them (use [the official cordova contacts plugin for that](https://github.com/apache/cordova-plugin-contacts)).
