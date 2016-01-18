@@ -1,6 +1,6 @@
 # ManageContacts [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=dbaq&url=https://github.com/dbaq/cordova-plugin-contacts-phone-numbers&title=cordova-plugin-contacts-phone-numbers&language=en&tags=github&category=software)
 
-Cross-platform plugin for Cordova / Ionic to list all the contacts with at least a phone number.
+Cross-platform plugin for Cordova / Ionic to add contacts.
 
 ## Installing the plugin ##
 
@@ -38,18 +38,6 @@ Use the  `navigator.manageContacts` with the method
    navigator.manageContacts.add(data);
 
 ```
-## Behaviour
-
-The plugin retrieves **ONLY** the contacts containing one or more phone numbers. It does not allow to modify them (use [the official cordova contacts plugin for that](https://github.com/apache/cordova-plugin-contacts)).
-
-With the official plugin, it is difficult and inefficient[1] to retrieve the list of all the contacts with at least a phone number (for Android at least). I needed a fastest way to retrieve a simple list containing just the name and the list of phone numbers.
-
-If you need more fields like the email address or if you also need to retrieve the contacts without email address, we can add an option, open an issue and I'll see what I can do.
-
-**[1]** When I say *difficult and inefficient*, it is because on Android, all your Gmail contacts are returned as a contact. [See this issue on stackoverflow](http://stackoverflow.com/questions/20406564/phonegap-contacts-api-android-return-only-phone-contacts-and-not-gmail-conta). With the official plugin you have to retrieve all the contacts and then iterate over the result to filter out what you want.
-
-I executed a small benchmark on my Nexus 5 with Lollipop. The code calls both plugins and displays the result in the console. On this phone I have 1028 contacts but only 71 contacts have at least a phone number. Of course the performances depends on the number of contacts with phone numbers.
-
 ## iOS and Android
 
 The plugin works with iOS and Android.
