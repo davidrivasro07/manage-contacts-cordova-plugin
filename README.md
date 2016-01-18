@@ -1,9 +1,9 @@
-# ContactsPhoneNumbers [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=dbaq&url=https://github.com/dbaq/cordova-plugin-contacts-phone-numbers&title=cordova-plugin-contacts-phone-numbers&language=en&tags=github&category=software)
+# ManageContacts [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=dbaq&url=https://github.com/dbaq/cordova-plugin-contacts-phone-numbers&title=cordova-plugin-contacts-phone-numbers&language=en&tags=github&category=software)
 
-Cross-platform plugin for Cordova / PhoneGap to list all the contacts with at least a phone number.
+Cross-platform plugin for Cordova / Ionic to list all the contacts with at least a phone number.
 
 ## Add Contact ##
-Use the  `navigator.contactsPhoneNumbers` with the method
+Use the  `navigator.manageContacts` with the method
 
   `add(data)`
 
