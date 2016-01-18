@@ -1,4 +1,4 @@
-package com.dbaq.cordova.contactsPhoneNumbers;
+package com.callpalapp.manageContacts;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -19,7 +19,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.Data;
 import android.util.Log;
 
-public class ContactsManager extends CordovaPlugin {
+public class ManageContacts extends CordovaPlugin {
 
     private CallbackContext callbackContext;
 
@@ -29,7 +29,7 @@ public class ContactsManager extends CordovaPlugin {
 
     private static final String LOG_TAG = "Contact Phone Numbers";
 
-    public ContactsManager() {}
+    public ManageContacts() {}
 
     /**
      * Executes the request and returns PluginResult.

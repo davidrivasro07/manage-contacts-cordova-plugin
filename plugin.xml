@@ -19,7 +19,7 @@
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="ManageContacts">
-                <param name="android-package" value="com.callpalapp.manageContacts.ContactsManager"/>
+                <param name="android-package" value="com.callpalapp.manageContacts.ManageContacts"/>
             </feature>
         </config-file>
 
@@ -27,7 +27,7 @@
             <uses-permission android:name="android.permission.READ_CONTACTS" />
         </config-file>
 
-        <source-file src="src/android/ContactsManager.java" target-dir="src/com/callpal/manageContacts" />
+        <source-file src="src/android/ManageContacts.java" target-dir="src/com/callpal/manageContacts" />
     </platform>
 
     <!-- ios -->
