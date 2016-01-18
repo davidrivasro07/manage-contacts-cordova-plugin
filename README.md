@@ -1,6 +1,6 @@
 # ManageContacts [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=dbaq&url=https://github.com/dbaq/cordova-plugin-contacts-phone-numbers&title=cordova-plugin-contacts-phone-numbers&language=en&tags=github&category=software)
 
-Cross-platform plugin for Cordova / Ionic to add contacts.
+Cross-platform plugin for Cordova / Ionic to show add contacts user interface.
 
 ## Installing the plugin ##
 
