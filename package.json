@@ -1,7 +1,7 @@
 {
   "name": "callpal-plugin-manage-contacts",
-  "version": "0.0.5",
-  "description": "Cordova Plugin to Manage Contacts ",
+  "version": "0.0.1",
+  "description": "Cordova Plugin to Manage Contacts.",
   "cordova": {
     "id": "com.callpalapp.manageContacts",
     "platforms": [
@@ -16,9 +16,7 @@
   "keywords": [
     "cordova",
     "contacts",
-    "list",
-    "phone",
-    "numbers",
+    "manage",
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios"

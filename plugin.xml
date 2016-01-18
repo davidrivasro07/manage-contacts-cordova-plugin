@@ -3,13 +3,13 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.callpalapp.manageContacts"
-    version="0.0.5">
+    version="0.0.1">
 
     <name>Manage Contacts</name>
     <description>Cordova Plugin to Manage Contacts </description>
     <license>Apache 2.0</license>
     <keywords>cordova,contacts,list,manage,contacts</keywords>
-    <issue>https://github.com/dbaq/cordova-plugin-contacts-phone-numbers/issues</issue>
+    <issue>https://github.com/davidrivasro07/manage-contacts-cordova-plugin/issues</issue>
 
     <js-module src="www/manageContacts.js" name="manageContacts">
         <clobbers target="navigator.manageContacts" />
@@ -18,8 +18,8 @@
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="manageContacts">
-                <param name="android-package" value="com.callpalapp.manageContacts"/>
+            <feature name="ManageContacts">
+                <param name="android-package" value="com.callpalapp.manageContacts.ContactsManager"/>
             </feature>
         </config-file>
 
