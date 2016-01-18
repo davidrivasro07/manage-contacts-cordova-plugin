@@ -26,17 +26,7 @@ var argscheck = require('cordova/argscheck'),
 * Represents a group of Contacts.
 * @constructor
 */
-var contactsList = {
-    /**
-     * Returns an array of Contacts
-     * @param successCB success callback
-     * @param errorCB error callback
-     * @return array of Contacts
-     */
-    list:function(successCB, errorCB) {
-        argscheck.checkArgs('fF', 'manageContacts.list', arguments);
-        exec(successCB, errorCB, "ManageContacts", "list", []);
-    },
+var manageContacts = {
 
     add:function(data){
       //console.log(data);
@@ -49,4 +39,4 @@ var contactsList = {
     }
 };
 
-module.exports = contactsList;
+module.exports = manageContacts;
