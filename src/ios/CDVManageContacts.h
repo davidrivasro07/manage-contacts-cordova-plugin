@@ -38,12 +38,3 @@
 - (void)add:(CDVInvokedUrlCommand*)command;
 
 @end
-
-typedef void (^ CDVAddressBookWorkerBlock)(
-    ABAddressBookRef         addrBook
-    );
-@interface CDVAddressBookPhoneNumberHelper : NSObject
-{}
-
-- (void)createAddressBook:(CDVAddressBookWorkerBlock)workerBlock;
-@end

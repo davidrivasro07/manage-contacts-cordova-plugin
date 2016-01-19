@@ -81,23 +81,3 @@
 
 }
 @end
-
-
-
-@implementation CDVAddressBookPhoneNumberHelper
-
-/**
- * NOTE: workerBlock is responsible for releasing the addressBook that is passed to it
- */
-- (void)createAddressBook:(CDVAddressBookWorkerBlock)workerBlock
-{
-    ABAddressBookRef addrBook = ABAddressBookCreateWithOptions(NULL, nil);
-    ABAddressBookRequestAccessWithCompletion(addrBook, ^(bool granted, CFErrorRef error) {
-        // callback can occur in background, address book must be accessed on thread it was created on
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            workerBlock(error || !granted ? NULL : addrBook);
-        });
-    });
-}
-
-@end
