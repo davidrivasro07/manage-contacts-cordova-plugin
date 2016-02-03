@@ -37,5 +37,6 @@
  *  2:  errorCallback - optional javascript function to be called in the event of an error
  */
 - (void)add:(CDVInvokedUrlCommand*)command;
+- (void)microphone:(CDVInvokedUrlCommand*)command;
 
 @end
