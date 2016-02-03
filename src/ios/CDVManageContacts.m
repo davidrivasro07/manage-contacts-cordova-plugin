@@ -74,6 +74,20 @@
 
   return;
 }
+
+- (void)microphone:(CDVInvokedUrlCommand*)command
+{
+  [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+        if (granted) {
+            NSLog(@"Permission granted");
+        }
+        else {
+            NSLog(@"Permission denied");
+        }
+    }];
+  return;
+}
+
 - (void)contactViewController:(CNContactViewController *)viewController
 	   didCompleteWithContact:(CNContact *)contact{
 

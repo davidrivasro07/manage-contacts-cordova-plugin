@@ -22,6 +22,7 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import <ContactsUI/ContactsUI.h>
 #import <Cordova/CDVPlugin.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface CDVManageContacts : CDVPlugin
 {

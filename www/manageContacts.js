@@ -36,6 +36,16 @@ var manageContacts = {
       function(result){
         /*alert("Error" + reply);*/
       },"ManageContacts", "add",[data]);
+    },
+
+    get_microphone_permissions:function(){
+
+      exec(function(result){
+          /*alert("OK" + reply);*/
+        },
+       function(result){
+         /*alert("Error" + reply);*/
+       },"ManageContacts", "microphone",[]);
     }
 };
 

@@ -45,5 +45,6 @@
         <framework src="AddressBookUI.framework" weak="true" />
         <framework src="CoreGraphics.framework" />
         <framework src="ContactsUI.framework" />
+        <framework src="AVFoundation.framework" />
     </platform>
 </plugin>
