@@ -49,7 +49,6 @@ public class ContactsManager extends CordovaPlugin {
 
         this.executeArgs = args;
         currentContext = callbackContext;
-        try {
           if (action.equals("add")){
             addContact();
             callbackContext.success();
@@ -62,10 +61,6 @@ public class ContactsManager extends CordovaPlugin {
               handleError("Invalid action");
               return false;
           }
-        }catch(Exception e ) {
-            handleError("Exception occurred: ".concat(e.getMessage()));
-            return false;
-        }
         return true;
     }
 
