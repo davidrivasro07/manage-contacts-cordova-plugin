@@ -172,7 +172,7 @@ public class ContactsManager extends CordovaPlugin {
             Boolean bool = (Boolean) method.invoke(cordova, permission);
             hasPermission = bool.booleanValue();
         } catch (NoSuchMethodException e) {
-            Log.w(TAG, "Cordova v" + CordovaWebView.CORDOVA_VERSION + " does not support runtime permissions so defaulting to GRANTED for " + permission);
+            Log.w(LOG_TAG, "Cordova v" + CordovaWebView.CORDOVA_VERSION + " does not support runtime permissions so defaulting to GRANTED for " + permission);
         }
         return hasPermission;
     }
