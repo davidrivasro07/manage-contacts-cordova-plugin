@@ -1,6 +1,5 @@
 package com.callpal.cordova.manageContacts;
 
-import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
@@ -8,12 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.Manifest;
-import android.location.LocationManager;
-import android.net.Uri;
-import android.os.Build;
-import android.content.pm.PackageManager;
-import android.net.wifi.WifiManager;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -27,12 +20,6 @@ import android.provider.ContactsContract.Contacts.Data;
 import android.util.Log;
 import android.provider.Settings;
 
-import java.lang.reflect.Method;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
 public class ContactsManager extends CordovaPlugin {
 
     private CallbackContext callbackContext;
@@ -45,11 +32,6 @@ public class ContactsManager extends CordovaPlugin {
 
     public ContactsManager() {}
 
-      /**
-    * Current Cordova callback context (on this thread)
-    */
-   protected CallbackContext currentContext;
-
     /**
      * Executes the request and returns PluginResult.
      *
@@ -60,122 +42,60 @@ public class ContactsManager extends CordovaPlugin {
      */
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
 
+        this.callbackContext = callbackContext;
         this.executeArgs = args;
-        currentContext = callbackContext;
-          if (action.equals("add")){
-            addContact(args);
-            callbackContext.success();
-          } else if (action.equals("switchToLocationSettings")){
-            switchToLocationSettings();
-            callbackContext.success();
-          } else if(action.equals("isLocationEnabled")) {
-            callbackContext.success(isGpsLocationEnabled() || isNetworkLocationEnabled() ? 1 : 0);
+
+        if (action.equals("add")){
+          Context context = this.cordova.getActivity().getApplicationContext();
+
+          Log.d("respuesta logout:" ,String.valueOf(args));
+
+          JSONObject contactData = (JSONObject) args.get(0);
+          JSONArray phoneNumbers = (JSONArray) contactData.getJSONArray("phones");
+
+
+          final Intent intent = new Intent(Intent.ACTION_INSERT, ContactsContract.Contacts.CONTENT_URI);
+          intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+          if(contactData.has("name")){
+             intent.putExtra(ContactsContract.Intents.Insert.NAME, contactData.getString("name"));
           }
-        return true;
-    }
 
-    public void addContact(JSONArray args) {
-
-      Context context = cordova.getActivity().getApplicationContext();
-
-      Log.d("respuesta logout:" ,String.valueOf(args));
-
-      JSONObject contactData = (JSONObject) args.get(0);
-      JSONArray phoneNumbers = (JSONArray) contactData.getJSONArray("phones");
-
-
-      final Intent intent = new Intent(Intent.ACTION_INSERT, ContactsContract.Contacts.CONTENT_URI);
-      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-      if(contactData.has("name")){
-         intent.putExtra(ContactsContract.Intents.Insert.NAME, contactData.getString("name"));
-      }
-
-      if(phoneNumbers.length() > 0){
-        for (int i = 0; i < phoneNumbers.length(); i++) {
-          JSONObject phone = (JSONObject) phoneNumbers.get(i);
-          switch(i){
-            case 0:
-              intent.putExtra(ContactsContract.Intents.Insert.PHONE, phone.getString("number"));
-              intent.putExtra(ContactsContract.Intents.Insert.PHONE_TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE);
-              break;
-            case 1:
-              intent.putExtra(ContactsContract.Intents.Insert.SECONDARY_PHONE, phone.getString("number"));
-              intent.putExtra(ContactsContract.Intents.Insert.SECONDARY_PHONE_TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE);
-              break;
-            case 2:
-              intent.putExtra(ContactsContract.Intents.Insert.TERTIARY_PHONE, phone.getString("number"));
-              intent.putExtra(ContactsContract.Intents.Insert.TERTIARY_PHONE_TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE);
-              break;
+          if(phoneNumbers.length() > 0){
+            for (int i = 0; i < phoneNumbers.length(); i++) {
+              JSONObject phone = (JSONObject) phoneNumbers.get(i);
+              switch(i){
+                case 0:
+                  intent.putExtra(ContactsContract.Intents.Insert.PHONE, phone.getString("number"));
+                  intent.putExtra(ContactsContract.Intents.Insert.PHONE_TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE);
+                  break;
+                case 1:
+                  intent.putExtra(ContactsContract.Intents.Insert.SECONDARY_PHONE, phone.getString("number"));
+                  intent.putExtra(ContactsContract.Intents.Insert.SECONDARY_PHONE_TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE);
+                  break;
+                case 2:
+                  intent.putExtra(ContactsContract.Intents.Insert.TERTIARY_PHONE, phone.getString("number"));
+                  intent.putExtra(ContactsContract.Intents.Insert.TERTIARY_PHONE_TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE);
+                  break;
+              }
+            }
           }
+
+          context.startActivity(intent);
+
+          return true;
+        } else if (action.equals("switchToLocationSettings")){
+          switchToLocationSettings();
+          callbackContext.success();
         }
-      }
-      context.startActivity(intent);
+
+        return false;
     }
 
     public void switchToLocationSettings() {
         Log.d(LOG_TAG, "Switch to Location Settings");
         Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
         cordova.getActivity().startActivity(settingsIntent);
-    }
-
-    public boolean isGpsLocationEnabled() throws Exception {
-        int mode = getLocationMode();
-        boolean result = (mode == 3 || mode == 1) && isLocationAuthorized();
-        Log.d(LOG_TAG, "GPS enabled: " + result);
-        return result;
-    }
-
-    public boolean isNetworkLocationEnabled() throws Exception {
-        int mode = getLocationMode();
-        boolean result = (mode == 3 || mode == 2) && isLocationAuthorized();
-        Log.d(LOG_TAG, "Network enabled: " + result);
-        return result;
-    }
-
-    /**
-     * Returns current location mode
-     */
-    private int getLocationMode() throws Exception {
-        int mode;
-        if (Build.VERSION.SDK_INT >= 19){ // Kitkat and above
-            mode = Settings.Secure.getInt(this.cordova.getActivity().getContentResolver(), Settings.Secure.LOCATION_MODE);
-        }else{ // Pre-Kitkat
-            if(isLocationProviderEnabled(LocationManager.GPS_PROVIDER) && isLocationProviderEnabled(LocationManager.NETWORK_PROVIDER)){
-                mode = 3;
-            }else if(isLocationProviderEnabled(LocationManager.GPS_PROVIDER)){
-                mode = 1;
-            }else if(isLocationProviderEnabled(LocationManager.NETWORK_PROVIDER)){
-                mode = 2;
-            }else{
-                mode = 0;
-            }
-        }
-        return mode;
-    }
-
-    private boolean isLocationAuthorized() throws Exception {
-        boolean authorized = hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION) || hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION);
-        Log.v(LOG_TAG, "Location permission is "+(authorized ? "authorized" : "unauthorized"));
-        return authorized;
-    }
-
-    private boolean isLocationProviderEnabled(String provider) {
-        LocationManager locationManager = (LocationManager) this.cordova.getActivity().getSystemService(Context.LOCATION_SERVICE);
-        return locationManager.isProviderEnabled(provider);
-    }
-
-    private boolean hasPermission(String permission) throws Exception{
-        boolean hasPermission = true;
-        Method method = null;
-        try {
-            method = cordova.getClass().getMethod("hasPermission", permission.getClass());
-            Boolean bool = (Boolean) method.invoke(cordova, permission);
-            hasPermission = bool.booleanValue();
-        } catch (NoSuchMethodException e) {
-            Log.w(LOG_TAG, "Cordova v" + CordovaWebView.CORDOVA_VERSION + " does not support runtime permissions so defaulting to GRANTED for " + permission);
-        }
-        return hasPermission;
     }
 
 }

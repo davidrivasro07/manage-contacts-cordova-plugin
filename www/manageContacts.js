@@ -48,15 +48,7 @@ var manageContacts = {
        },
       function(result){
       },"ManageContacts", "switchToLocationSettings",[]);
-    },
-
-    isLocationEnabled: function(successCallback, errorCallback) {
-		  exec(ensureBoolean(successCallback),
-  			errorCallback,
-  			'ManageContacts',
-  			'isLocationEnabled',
-			[]);
-	};
+    }
 };
 
 module.exports = manageContacts;
