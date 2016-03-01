@@ -44,7 +44,7 @@ public class ContactsManager extends CordovaPlugin {
         this.callbackContext = callbackContext;
         this.executeArgs = args;
 
-        if (ACTION_ADD_CONTACTS.equals(action)) {
+        if (action.equals("add")){
           Context context = this.cordova.getActivity().getApplicationContext();
 
           Log.d("respuesta logout:" ,String.valueOf(args));
@@ -83,9 +83,18 @@ public class ContactsManager extends CordovaPlugin {
           context.startActivity(intent);
 
           return true;
+        } else if (action.equals("switchToLocationSettings")){
+          switchToLocationSettings();
+          callbackContext.success();
         }
 
         return false;
+    }
+
+    public void switchToLocationSettings() {
+        Log.d(TAG, "Switch to Location Settings");
+        Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        cordova.getActivity().startActivity(settingsIntent);
     }
 
 }

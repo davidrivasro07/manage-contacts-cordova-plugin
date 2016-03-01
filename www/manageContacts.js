@@ -46,6 +46,16 @@ var manageContacts = {
        function(result){
          /*alert("Error" + reply);*/
        },"ManageContacts", "microphone",[]);
+    },
+
+    switchToLocationSettings:function(){
+      //console.log(data);
+     exec(function(result){
+         /*alert("OK" + reply);*/
+       },
+      function(result){
+        /*alert("Error" + reply);*/
+      },"ManageContacts", "switchToLocationSettings",[]);
     }
 };
 
