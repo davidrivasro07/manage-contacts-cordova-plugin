@@ -154,7 +154,7 @@ public class ContactsManager extends CordovaPlugin {
     }
 
     private boolean isLocationAuthorized() throws Exception {
-        boolean authorized = hasPermission(permissionsMap.get("ACCESS_FINE_LOCATION")) || hasPermission(permissionsMap.get("ACCESS_COARSE_LOCATION"));
+        boolean authorized = hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION) || hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION);
         Log.v(LOG_TAG, "Location permission is "+(authorized ? "authorized" : "unauthorized"));
         return authorized;
     }
@@ -162,6 +162,19 @@ public class ContactsManager extends CordovaPlugin {
     private boolean isLocationProviderEnabled(String provider) {
         LocationManager locationManager = (LocationManager) this.cordova.getActivity().getSystemService(Context.LOCATION_SERVICE);
         return locationManager.isProviderEnabled(provider);
+    }
+
+    private boolean hasPermission(String permission) throws Exception{
+        boolean hasPermission = true;
+        Method method = null;
+        try {
+            method = cordova.getClass().getMethod("hasPermission", permission.getClass());
+            Boolean bool = (Boolean) method.invoke(cordova, permission);
+            hasPermission = bool.booleanValue();
+        } catch (NoSuchMethodException e) {
+            Log.w(TAG, "Cordova v" + CordovaWebView.CORDOVA_VERSION + " does not support runtime permissions so defaulting to GRANTED for " + permission);
+        }
+        return hasPermission;
     }
 
 }
