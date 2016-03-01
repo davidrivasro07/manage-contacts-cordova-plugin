@@ -18,6 +18,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.Data;
 import android.util.Log;
+import android.provider.Settings;
 
 public class ContactsManager extends CordovaPlugin {
 
