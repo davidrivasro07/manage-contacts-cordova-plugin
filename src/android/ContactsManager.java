@@ -92,7 +92,7 @@ public class ContactsManager extends CordovaPlugin {
     }
 
     public void switchToLocationSettings() {
-        Log.d(TAG, "Switch to Location Settings");
+        Log.d(LOG_TAG, "Switch to Location Settings");
         Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
         cordova.getActivity().startActivity(settingsIntent);
     }
