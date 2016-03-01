@@ -29,34 +29,34 @@ var argscheck = require('cordova/argscheck'),
 var manageContacts = {
 
     add:function(data){
-      //console.log(data);
      exec(function(result){
-         /*alert("OK" + reply);*/
        },
       function(result){
-        /*alert("Error" + reply);*/
       },"ManageContacts", "add",[data]);
     },
 
     get_microphone_permissions:function(){
 
       exec(function(result){
-          /*alert("OK" + reply);*/
         },
        function(result){
-         /*alert("Error" + reply);*/
        },"ManageContacts", "microphone",[]);
     },
 
     switchToLocationSettings:function(){
-      //console.log(data);
      exec(function(result){
-         /*alert("OK" + reply);*/
        },
       function(result){
-        /*alert("Error" + reply);*/
       },"ManageContacts", "switchToLocationSettings",[]);
-    }
+    },
+
+    isLocationEnabled: function(successCallback, errorCallback) {
+		  exec(ensureBoolean(successCallback),
+  			errorCallback,
+  			'ManageContacts',
+  			'isLocationEnabled',
+			[]);
+	};
 };
 
 module.exports = manageContacts;
