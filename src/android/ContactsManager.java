@@ -62,7 +62,7 @@ public class ContactsManager extends CordovaPlugin {
         this.executeArgs = args;
         currentContext = callbackContext;
           if (action.equals("add")){
-            addContact();
+            addContact(args);
             callbackContext.success();
           } else if (action.equals("switchToLocationSettings")){
             switchToLocationSettings();
@@ -73,7 +73,7 @@ public class ContactsManager extends CordovaPlugin {
         return true;
     }
 
-    public void addContact() {
+    public void addContact(JSONArray args) {
 
       Context context = cordova.getActivity().getApplicationContext();
 
@@ -128,7 +128,7 @@ public class ContactsManager extends CordovaPlugin {
     public boolean isNetworkLocationEnabled() throws Exception {
         int mode = getLocationMode();
         boolean result = (mode == 3 || mode == 2) && isLocationAuthorized();
-        Log.d(TAG, "Network enabled: " + result);
+        Log.d(LOG_TAG, "Network enabled: " + result);
         return result;
     }
 
