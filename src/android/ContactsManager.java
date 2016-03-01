@@ -7,6 +7,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.Manifest;
+import android.location.LocationManager;
+import android.net.Uri;
+import android.os.Build;
+import android.content.pm.PackageManager;
+import android.net.wifi.WifiManager;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -19,6 +25,12 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.Data;
 import android.util.Log;
 import android.provider.Settings;
+
+import java.lang.reflect.Method;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 public class ContactsManager extends CordovaPlugin {
 
@@ -57,9 +69,6 @@ public class ContactsManager extends CordovaPlugin {
             callbackContext.success();
           } else if(action.equals("isLocationEnabled")) {
             callbackContext.success(isGpsLocationEnabled() || isNetworkLocationEnabled() ? 1 : 0);
-          }else {
-              handleError("Invalid action");
-              return false;
           }
         return true;
     }
@@ -153,23 +162,6 @@ public class ContactsManager extends CordovaPlugin {
     private boolean isLocationProviderEnabled(String provider) {
         LocationManager locationManager = (LocationManager) this.cordova.getActivity().getSystemService(Context.LOCATION_SERVICE);
         return locationManager.isProviderEnabled(provider);
-    }
-
-    /************
-     * Internals
-     ***********/
-    /**
-     * Handles an error while executing a plugin API method  in the specified context.
-     * Calls the registered Javascript plugin error handler callback.
-     * @param errorMsg Error message to pass to the JS error handler
-     */
-    private void handleError(String errorMsg, CallbackContext context){
-        try {
-            Log.e(LOG_TAG, errorMsg);
-            context.error(errorMsg);
-        } catch (Exception e) {
-            Log.e(LOG_TAG, e.toString());
-        }
     }
 
 }
