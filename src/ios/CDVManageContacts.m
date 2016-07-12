@@ -19,7 +19,6 @@
 
 #import "CDVManageContacts.h"
 #import <UIKit/UIKit.h>
-#import <Cordova/NSDictionary+Extensions.h>
 #import <ContactsUI/ContactsUI.h>
 
 @implementation CDVManageContacts
